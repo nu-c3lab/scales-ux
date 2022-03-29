@@ -103,9 +103,9 @@ const Panel: FunctionComponent<PanelProps> = ({ panelId }) => {
 
   if (!panel?.ringId) return <Dataset panelId={panel.id} />;
 
-  const rows = results?.results?.map((result, id) => ({
+  const rows = results?.results?.map((result) => ({
     ...result,
-    id: `${results.page}-${id}`,
+    id: uniqid(),
   })) || [];
 
   const columns = info?.columns?.map((column) => ({
@@ -114,6 +114,8 @@ const Panel: FunctionComponent<PanelProps> = ({ panelId }) => {
     width: 200, //column?.width,
     sortable: column.sortable,
   })) || [];
+
+  console.log(results);
 
   return (
     <Accordion defaultActiveKey={collapsed === true ? null : panel.id} className="mb-4">
@@ -167,6 +169,7 @@ const Panel: FunctionComponent<PanelProps> = ({ panelId }) => {
                                   )
                                 }
                                 }
+                                getRowId={() => uniqid()}
                                 rows={rows}
                                 columns={columns}
                                 page={results?.page}
@@ -211,7 +214,6 @@ const Panel: FunctionComponent<PanelProps> = ({ panelId }) => {
                 variant="outline-dark"
                 className="me-2"
                 onClick={() => {
-                  console.log(uniqid());
                   addPanelAnalysis({
                     id: uniqid()
                   })

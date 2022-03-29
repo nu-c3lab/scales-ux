@@ -5,6 +5,7 @@ import { authorizationHeader } from "utils";
 import { notify } from "reapop";
 import { useUnknownErrorNotificationMessage } from "components/Notifications";
 import { useSelector, useDispatch } from "react-redux";
+import config from "config";
 
 interface InitialState {
   loadingNotebook: boolean;
@@ -115,7 +116,7 @@ export function fetchNotebook(id: string) {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/notebooks/${id}`,
+        `${config.SERVER_API_URL}/notebooks/${id}`,
         {
           method: "GET",
           headers: {
@@ -144,7 +145,7 @@ export function updateNotebook(id: string, payload: any) {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/notebooks/${id}`,
+        `${config.SERVER_API_URL}/notebooks/${id}`,
         {
           method: "PUT",
           headers: {
@@ -176,7 +177,7 @@ export function createNotebook(payload: any) {
     dispatch(notebookActions.createNotebook());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/notebooks`,
+        `${config.SERVER_API_URL}/notebooks`,
         {
           method: "POST",
           headers: {
@@ -207,7 +208,7 @@ export function deleteNotebook(id: string) {
     dispatch(notebookActions.removeNotebook());
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/notebooks/${id}`,
+        `${config.SERVER_API_URL}/notebooks/${id}`,
         {
           method: "DELETE",
           headers: {

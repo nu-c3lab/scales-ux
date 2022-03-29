@@ -4,6 +4,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
 import { useAuthHeader } from "store/auth";
 import { useNotify } from "components/Notifications";
+import config from "config";
 
 type Props = {
   userId: number;
@@ -24,7 +25,7 @@ const UserFieldToggle: FunctionComponent<Props> = ({
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked !== checked) {
-      fetch(`${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/users/${userId}`, {
+      fetch(`${config.SERVER_API_URL}/users/${userId}`, {
         method: "PUT",
         body: JSON.stringify({
           [fieldName]: !checked,

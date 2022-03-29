@@ -9,6 +9,8 @@ import { useNotify } from "components/Notifications";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
+import config from "config";
+
 interface ResetPasswordFields {
   password: string;
   repassword: string;
@@ -44,7 +46,7 @@ const ResetPassword: FunctionComponent = () => {
     validationSchema: ResetPasswordValidationSchema,
     onSubmit: (values: ResetPasswordFields, { setErrors }) => {
       fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/users/password/reset`,
+        `${config.SERVER_API_URL}/users/password/reset`,
         {
           method: "POST",
           headers: {

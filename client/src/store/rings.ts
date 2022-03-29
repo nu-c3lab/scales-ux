@@ -4,6 +4,7 @@ import { authSelector } from "store/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { notify } from "reapop";
 import { authorizationHeader } from "utils";
+import config from "config";
 
 interface InitialState {
   loadingRings: boolean;
@@ -81,7 +82,7 @@ export const getRings = () => {
       dispatch(ringsActions.getRings());
 
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/rings`,
+        `${config.SERVER_API_URL}/rings`,
         {
           headers: {
             ...authHeader,
@@ -110,7 +111,7 @@ export const getRingInfo = (rid: string, version: number) => {
     try {
       dispatch(ringsActions.getRingInfo());
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_PROXY_ENDPOINT_URL}/rings/${rid}/${version}`,
+        `${config.SERVER_PROXY_URL}/rings/${rid}/${version}`,
       );
       const info = await response.json();
 

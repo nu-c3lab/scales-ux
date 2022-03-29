@@ -8,6 +8,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
 import { useNotify } from "components/Notifications";
+import config from "config";
 
 interface ForgotPasswordFields {
   email: string;
@@ -31,7 +32,7 @@ const ForgotPassword: FunctionComponent = () => {
     validationSchema: ForgotPasswordValidationSchema,
     onSubmit: (values: ForgotPasswordFields, { setErrors }) => {
       fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/users/password/forgot`,
+        `${config.SERVER_API_URL}/users/password/forgot`,
         {
           method: "POST",
           headers: {

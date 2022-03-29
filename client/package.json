@@ -51,6 +51,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.0",
     "react-select": "^5.2.2",
+    "react-table": "^7.7.0",
     "react-tag-autocomplete": "^6.3.0",
     "react-tag-input": "^6.7.3",
     "reapop": "^4.0.3",

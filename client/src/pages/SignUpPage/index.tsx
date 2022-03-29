@@ -8,6 +8,7 @@ import { Container, Form, Button, Col, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBalanceScale } from "@fortawesome/free-solid-svg-icons";
 import { useNotify } from "components/Notifications";
+import config from "config";
 
 interface UserSignUpFields extends UserSignInFields {
   firstName: string;
@@ -53,7 +54,7 @@ const SignUpPage: FunctionComponent = () => {
     },
     validationSchema: UserSignUpValidationSchema,
     onSubmit: (values: UserSignUpFields, { setErrors }) => {
-      fetch(`${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/users/create`, {
+      fetch(`${config.SERVER_API_URL}/users/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

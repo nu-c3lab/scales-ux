@@ -10,6 +10,7 @@ import { usePanel } from "../../store/panels";
 import { useRing } from "../../store/rings";
 import { DATE_FORMAT } from "../../constants";
 import { useNotify } from "../../components/Notifications";
+import config from "config";
 
 export type Filter = {
   id: string;
@@ -89,7 +90,7 @@ const Filter: FunctionComponent<Props> = ({ panelId, filter }) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_PROXY_ENDPOINT_URL}/autocomplete/${ring.rid}/1/${info?.defaultEntity}/${type}?query=${query}`
+        `${config.SERVER_PROXY_URL}/autocomplete/${ring.rid}/1/${info?.defaultEntity}/${type}?query=${query}`
       );
       if (response.status === 200) {
         const data = await response.json();

@@ -3,6 +3,7 @@ import type { RootState, AppDispatch } from "store";
 import { authSelector } from "store/auth";
 import { useSelector, useDispatch } from "react-redux";
 import { authorizationHeader } from "utils";
+import config from "config";
 
 interface InitialState {
   loadingNotebooks: boolean;
@@ -55,7 +56,7 @@ export function fetchNotebooks() {
 
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/notebooks`,
+        `${config.SERVER_API_URL}/notebooks`,
         {
           method: "GET",
           headers: {

@@ -13,6 +13,7 @@ import UserFieldToggle from "./UserFieldToggle";
 import { Row } from "react-bootstrap";
 import { useAuthHeader, userSelector } from "store/auth";
 import { useSelector } from "react-redux";
+import config from "config";
 
 const columns: GridColDef[] = [
   // { field: "id", headerName: "ID", width: 100 },
@@ -75,7 +76,7 @@ const AdminUsersPages: FunctionComponent = () => {
   const isAdmin = role === 'admin';
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_BFF_API_ENDPOINT_URL}/users`, {
+    fetch(`${config.SERVER_API_URL}/users`, {
       headers: {
         ...authorizationHeader,
         "Content-Type": "application/json",
